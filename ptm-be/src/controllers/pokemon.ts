@@ -63,7 +63,7 @@ export const addPokemonToTeam = async (req: Request, res: Response) => {
     try {
         const { teamId } = req.params;
         const { pokemonId } = req.body;
-        await pokemonService.assignPokemonToATeam(Number(teamId), Number(pokemonId));
+        await pokemonService.assignPokemonToTeam(Number(teamId), Number(pokemonId));
         res.status(204).send();
     } catch (error) {
         if (error instanceof Error) {
@@ -92,7 +92,7 @@ export const assignPokemonToTeam = async (req: Request, res: Response) => {
     try {
         const { teamId } = req.params;
         const { pokemonId } = req.body;
-        await pokemonService.assignPokemonToATeam(Number(teamId), Number(pokemonId));
+        await pokemonService.assignPokemonToTeam(Number(teamId), Number(pokemonId));
         res.status(204).send();
     } catch (error) {
         if (error instanceof Error) {

@@ -2,10 +2,10 @@ import { Pool } from 'pg';
 
 const pool = new Pool({
   user: process.env.POSTGRES_USER,
-  host: 'db',
+  host: process.env.PGHOST,
   database: process.env.POSTGRES_DB,
   password: process.env.POSTGRES_PASSWORD,
-  port: 5432,
+  port: Number(process.env.PGPORT),
 });
 
 pool.on('error', (err) => {

@@ -12,7 +12,7 @@ export function getService(postgres: Pool) {
             return result;
         },
         async createTeams(body: TeamRequest) {
-            const result = await teamRepository.createTeam(mapper(body).toTeamWrite);
+            const result = await teamRepository.createTeam(mapper(body).toTeamWrite());
             return result;
         },
         async getTeamWithPokemons(teamId: number) {

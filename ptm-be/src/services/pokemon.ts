@@ -26,7 +26,7 @@ export function getService (postgres: Pool) {
             const result = await pokemonRepository.createPokemonAndAssignToTeam(mapper(body).toPokemonWrite(), teamId);
             return result;
         },
-        async assignPokemonToATeam(teamId: number, pokemonId: number) {
+        async assignPokemonToTeam(teamId: number, pokemonId: number) {
             const result = await pokemonRepository.assignPokemonToTeam(pokemonId, teamId);
             return result;
         }

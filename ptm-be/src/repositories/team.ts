@@ -43,7 +43,7 @@ function teamToTableRow(team: TeamWrite) {
 export function getRepository(postgres: Pool) {
     return {
         async getAllTeams(): Promise<Team[]> {
-            const queryString = `SELECT * FROM teams`;
+            const queryString = `SELECT * FROM team`;
             const result = await postgres.query(queryString);
             return result.rows.map(tableRowToTeam);
         },
@@ -57,10 +57,10 @@ export function getRepository(postgres: Pool) {
             } = extractVariables(tableRow);
 
             const queryString = `
-                INSERT INTO teams (${columns.join(",")})
+                INSERT INTO team (${columns.join(",")})
                 VALUES(${variables})
                 RETURNING *;
-        `;
+            `;
 
             const result = await postgres.query(queryString, queryValues);
             const newTeam = tableRowToTeam(result.rows[0]);
@@ -70,8 +70,8 @@ export function getRepository(postgres: Pool) {
         async getTeamWithPokemons(teamId: number): Promise<{ team: Team, pokemons: Pokemon[] }> {
             const queryString = `
                 SELECT t.*, p.id AS pokemon_id, p.name AS pokemon_name, p.base_experience, p.sprite, p.abilities, p.types 
-                FROM teams t
-                LEFT JOIN pokemons p ON t.id = p.team_id
+                FROM team t
+                LEFT JOIN pokemon p ON t.id = p.team_id
                 WHERE t.id = $1;
             `;
             const result = await postgres.query(queryString, [teamId]);

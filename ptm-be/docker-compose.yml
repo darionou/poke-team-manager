@@ -5,6 +5,12 @@ services:
     build: .
     ports:
       - "3000:3000"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: pokemon_tournament
+      PGHOST: db
+      PGPORT: 5432
     volumes:
       - .:/app
       - /app/node_modules
@@ -16,7 +22,8 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: testdb
+      POSTGRES_DB: pokemon_tournament
+      
     ports:
       - "5432:5432"
     volumes:
