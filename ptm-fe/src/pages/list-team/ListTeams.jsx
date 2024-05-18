@@ -1,49 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getTeams, getTeamById } from '../../api';
+import { getFilteredTeams } from '../../api';
 import './ListTeams.css';
 import teamsImage from '../../assets/img/teams.jpg';
 
 function ListTeams() {
   const [teams, setTeams] = useState([]);
-  const [filteredTeams, setFilteredTeams] = useState([]);
   const [filterType, setFilterType] = useState('');
   const [availableTypes, setAvailableTypes] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchTeams = async () => {
-      try {
-        const response = await getTeams();
-        const teamData = response.data;
-        const teamDetailsPromises = teamData.map(
-          (team) => getTeamById(team.id).then((res) => res.data),
-        );
+  const fetchFilteredTeams = async (filters) => {
+    try {
+      const response = await getFilteredTeams(filters);
+      const teamsWithDetails = response.data;
 
-        const teamsWithDetails = await Promise.all(teamDetailsPromises);
-        // Sort teams by creation date if the API provides it, assuming "created_at" exists
-        const sortedTeams = teamsWithDetails.sort(
-          (a, b) => new Date(b.team.createdAt) - new Date(a.team.createdAt),
-        );
-
-        // Collect all unique types
-        const typesSet = new Set();
-        sortedTeams.forEach((team) => {
-          team.pokemons.forEach((pokemon) => {
-            pokemon.types.split(',').forEach((type) => typesSet.add(type.trim()));
-          });
+      // Collect all unique types
+      const typesSet = new Set();
+      teamsWithDetails.forEach((team) => {
+        team.pokemons.forEach((pokemon) => {
+          pokemon.types.split(',').forEach((type) => typesSet.add(type.trim()));
         });
+      });
 
-        setAvailableTypes([...typesSet]);
+      setAvailableTypes([...typesSet]);
+      setTeams(teamsWithDetails);
+    } catch (error) {
+      console.error('Error fetching filtered teams:', error);
+    }
+  };
 
-        setTeams(sortedTeams);
-        setFilteredTeams(sortedTeams);
-      } catch (error) {
-        console.error('Error fetching teams:', error);
-      }
-    };
-
-    fetchTeams();
+  useEffect(() => {
+    fetchFilteredTeams({
+      sortBy: 'created_at', order: 'desc', offset: 0, limit: 20,
+    });
   }, []);
 
   const handleTeamClick = (teamId) => {
@@ -53,25 +43,25 @@ function ListTeams() {
   const handleFilterChange = (event) => {
     const type = event.target.value;
     setFilterType(type);
-    if (type) {
-      setFilteredTeams(
-        teams.filter((team) => team.pokemons.some((pokemon) => pokemon.types.includes(type))),
-      );
-    } else {
-      setFilteredTeams(teams);
-    }
+    fetchFilteredTeams({
+      type,
+      sortBy: 'created_at',
+      order: 'desc',
+      offset: 0,
+      limit: 20,
+    });
   };
 
   const handleSelectChange = (event) => {
     const type = event.target.value;
     setFilterType(type);
-    if (type) {
-      setFilteredTeams(
-        teams.filter((team) => team.pokemons.some((pokemon) => pokemon.types.includes(type))),
-      );
-    } else {
-      setFilteredTeams(teams);
-    }
+    fetchFilteredTeams({
+      type,
+      sortBy: 'created_at',
+      order: 'desc',
+      offset: 0,
+      limit: 20,
+    });
   };
 
   return (
@@ -103,11 +93,10 @@ function ListTeams() {
         </div>
       </div>
       <div className="teams-list">
-        {console.log('filteredTeams: ', filteredTeams)}
-        {filteredTeams.map((team) => (
+        {teams.map((team) => (
           <div
             className="team-card"
-            key={team.team.id}
+            key={team.team.team_id}
             onClick={() => handleTeamClick(team.team.id)}
           >
             <h2>{team.team.name}</h2>
@@ -124,9 +113,7 @@ function ListTeams() {
             <p>
               Total Base Experience:
               {' '}
-              {
-              team.pokemons.reduce((total, p) => total + p.baseExperience, 0)
-}
+              {team.pokemons.reduce((total, p) => total + p.baseExperience, 0)}
             </p>
             <p>
               Types:
