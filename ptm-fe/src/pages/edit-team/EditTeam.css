@@ -1,0 +1,91 @@
+/* EditTeam.css */
+
+.edit-team-container {
+  text-align: center;
+  padding: 5rem;
+}
+
+.banner-oak-image-edit {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  margin: 1rem 0;
+}
+
+.team-name-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.team-name-input {
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  margin-right: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.update-team-name-button,
+.edit-team-name-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem ;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s ease-in-out;
+  margin-left: 16px;
+}
+
+.update-team-name-button:hover,
+.edit-team-name-button:hover {
+  background-color: #218838;
+}
+
+.pokemon-layout {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.pokemon-list {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+
+.pokemon-expanded-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+  margin-left: 2rem;
+}
+
+.add-pokemon-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-top: 1rem;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.add-pokemon-button:hover {
+  background-color: #0056b3;
+}
+
+.save-pokemon-button {
+  background-color: #28a745;
+}
+
+.save-pokemon-button:hover {
+  background-color: #218838;
+}

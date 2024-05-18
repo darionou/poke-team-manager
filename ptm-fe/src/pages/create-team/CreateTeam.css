@@ -1,0 +1,58 @@
+.create-team-container {
+  text-align: center;
+  padding: 5rem;
+}
+
+.banner-oak-image-create {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  margin: 1rem 0;
+}
+
+.form-up-title {
+  font-weight: 800;
+  font-size: medium;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.form-container {
+  width: 100%;
+}
+
+.add-pokemon-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-top: 1rem;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.add-pokemon-button:hover {
+  background-color: #0056b3;
+}
+
+.create-pokemon-layout {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.pokemon-list {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+
+

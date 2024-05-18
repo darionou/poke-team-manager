@@ -1,0 +1,29 @@
+.pokemon-card {
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    margin: 0.5rem 0;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .pokemon-card.collapsed {
+    max-height: 100px;
+    overflow: hidden;
+  }
+  
+  .pokemon-card.expanded {
+    width: 60%;
+    margin-left: 2rem;
+    max-height: 350px;
+  }
+  
+  .pokemon-card.collapsed-selected {
+    max-height: 100px;
+    overflow: hidden;
+    border-width: 2;
+    border-color:#007bff;
+  }
