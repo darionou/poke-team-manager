@@ -18,7 +18,7 @@ export const getPokemon = (pokemonId) => axios.get(`https://pokeapi.co/api/v2/po
 
 export const getFilteredTeams = (filters) => {
   const {
-    type, sortBy, offset, limit,
+    type, sortBy, offset, limit, order,
   } = filters;
   return axios.get(`${API_URL}/teams/filter`, {
     params: {
@@ -26,6 +26,7 @@ export const getFilteredTeams = (filters) => {
       sortBy,
       offset,
       limit,
+      order,
     },
   });
 };
