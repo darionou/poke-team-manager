@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import { Pool } from 'pg';
 
 const pool = new Pool({
@@ -13,11 +14,6 @@ pool.on('error', (err) => {
   process.exit(-1);
 });
 
-const getDbInstance = () : Pool => {
-  return pool;
-}
+const getDbInstance = () : Pool => pool;
 
 export { getDbInstance };
-
-
-
