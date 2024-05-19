@@ -55,9 +55,13 @@ The cache is checked before querying the database, and if data is not found, the
 
 ### Database Configuration
 
-You can find the database configurations in the `docker-compose.yml` file by changing the environment variables.
+You can find the database configuration in the `docker-compose.yml` file.
 
-The database .sql scripts are located in the folder db. 
+To configure the connection to the database, create a new `.env` file in the project root. You can use the credentials provided in the `.env.example` file as a template. Simply copy and paste the contents of .env.example into your new .env file and adjust the values as needed.
+
+All SQL scripts that run on database startup are located in the `/db` folder.
+
+
 
 ## Setup
 
