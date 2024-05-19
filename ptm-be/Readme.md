@@ -53,6 +53,8 @@ I implemented in-memory caching using the node-cache package to store and retrie
 
 The cache is checked before querying the database, and if data is not found, the query result is stored in the cache for future requests. 
 
+It is possible to set the cache ttl in the env file, changing the variable `NODE_CACHE_TTL`
+
 ### Database Configuration
 
 You can find the database configuration in the `docker-compose.yml` file.
