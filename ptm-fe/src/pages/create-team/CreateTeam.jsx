@@ -7,7 +7,7 @@ import { getPokemon, addPokemonsToTeam } from '../../api';
 import './CreateTeam.css';
 import oakImage from '../../assets/img/prof-oak.jpg';
 import Card from '../../components/organisms/card/Card';
-import GottaCatchEmAllButton from '../../components/atoms/GottaCatchEmAllButton';
+import GottaCatchEmAllButton from '../../components/atoms/gcema-button/GottaCatchEmAllButton';
 
 function CreateTeam() {
   const [team, setTeam] = useState(null);
