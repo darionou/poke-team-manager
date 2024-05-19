@@ -64,15 +64,25 @@ function ListTeams() {
     });
   };
 
+  const handleResetFilter = () => {
+    setFilterType('');
+    fetchFilteredTeams({
+      sortBy: 'created_at',
+      order: 'desc',
+      offset: 0,
+      limit: 20,
+    });
+  };
+
   return (
     <div className="list-teams-container">
       <h1>Team Listing</h1>
       <img src={teamsImage} alt="Pokémon Banner" className="banner-image" />
       <div className="filter-container">
         <div className="filter-multiselect">
-          <label htmlFor="type-select">
+          <label className="type-select-label" htmlFor="type-select">
             Filter by Type:
-            <select id="type-select" value={filterType} onChange={handleSelectChange}>
+            <select className="type-select" value={filterType} onChange={handleSelectChange}>
               <option value="">All Types</option>
               {availableTypes.map((type) => (
                 <option key={type} value={type}>{type}</option>
@@ -91,6 +101,9 @@ function ListTeams() {
             />
           </label>
         </div>
+        <button type="button" className="reset-filter-button" onClick={handleResetFilter}>
+          Reset Filter
+        </button>
       </div>
       <div className="teams-list">
         {teams.map((team) => (
