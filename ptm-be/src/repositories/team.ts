@@ -3,7 +3,7 @@ import NodeCache from 'node-cache';
 import extractVariables from '../helpers/postgres';
 import { FilterTeamRequest, FilterTeamResponse } from '../helpers/types';
 
-const cache = new NodeCache({ stdTTL: 2 });
+const cache = new NodeCache({ stdTTL: Number(process.env.NODE_CACHE_TTL) || 2 });
 
 export type TeamWrite = {
     name: string;
