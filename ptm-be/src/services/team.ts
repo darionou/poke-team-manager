@@ -2,6 +2,7 @@ import { Pool } from 'pg';
 import { getRepository as getTeamRepository } from '../repositories/team';
 import mapper from '../helpers/mapper';
 import { FilterTeamRequest, TeamRequest } from '../helpers/types';
+import { NotFound } from '../libs/errors';
 
 export default function getService(postgres: Pool) {
   const teamRepository = getTeamRepository(postgres);
@@ -16,6 +17,8 @@ export default function getService(postgres: Pool) {
       return mapper(result).toTeamRead();
     },
     async getTeamWithPokemons(teamId: number) {
+      const team = await teamRepository.getTeamById(teamId);
+      if (!team) throw new NotFound('Team not found');
       const result = await teamRepository.getTeamWithPokemons(teamId);
       return {
         team: mapper(result.team).toTeamRead(),
@@ -24,6 +27,7 @@ export default function getService(postgres: Pool) {
     },
     async updateTeam(teamId: number, body: TeamRequest) {
       const result = await teamRepository.updateTeam(teamId, mapper(body).toTeamWrite());
+      if (!result) throw new NotFound('Team not found');
       return mapper(result).toTeamRead();
     },
     async getTeamsPokemonsFiltered(filters: FilterTeamRequest) {

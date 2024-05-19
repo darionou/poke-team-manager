@@ -3,7 +3,7 @@ import NodeCache from 'node-cache';
 import extractVariables from '../helpers/postgres';
 import { FilterTeamRequest, FilterTeamResponse } from '../helpers/types';
 
-const cache = new NodeCache({ stdTTL: 60 });
+const cache = new NodeCache({ stdTTL: 2 });
 
 export type TeamWrite = {
     name: string;
@@ -87,6 +87,14 @@ function filterToTableRow(filters: FilterTeamRequest) {
 
 export function getRepository(postgres: Pool) {
   return {
+    async getTeamById(id: number): Promise<Team | null> {
+      const queryString = 'SELECT * FROM team WHERE id = $1';
+      const result = await postgres.query(queryString, [id]);
+      if (result.rows.length === 0) {
+        return null;
+      }
+      return tableRowToTeam(result.rows[0]);
+    },
     async getAllTeams(): Promise<Team[]> {
       const queryString = 'SELECT * FROM team';
       const result = await postgres.query(queryString);
