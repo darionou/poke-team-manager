@@ -6,7 +6,8 @@ import TeamForm from '../../components/organisms/form/TeamForm';
 import { getPokemon, addPokemonsToTeam } from '../../api';
 import './CreateTeam.css';
 import oakImage from '../../assets/img/prof-oak.jpg';
-import Card from '../../components/molecules/card/Card';
+import Card from '../../components/organisms/card/Card';
+import GottaCatchEmAllButton from '../../components/atoms/GottaCatchEmAllButton';
 
 function CreateTeam() {
   const [team, setTeam] = useState(null);
@@ -65,9 +66,10 @@ function CreateTeam() {
             <h3>
               Ready to get your Pokémon? Press on the button below to catch one.
             </h3>
-            <button className="add-pokemon-button" onClick={handleAddPokemon}>
+            {/* <button className="add-pokemon-button" onClick={handleAddPokemon}>
               Gotta Catch 'Em All
-            </button>
+            </button> */}
+            <GottaCatchEmAllButton onClick={handleAddPokemon} text={'Gotta Catch \'Em All'} />
             <div className="create-pokemon-layout">
               <div className="pokemon-list">
                 {pokemons

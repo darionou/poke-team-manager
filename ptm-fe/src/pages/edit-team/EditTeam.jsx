@@ -6,7 +6,7 @@ import {
 } from '../../api';
 import './EditTeam.css';
 import oakImage from '../../assets/img/prof-oak.jpg';
-import Card from '../../components/molecules/card/Card';
+import Card from '../../components/organisms/card/Card';
 
 function EditTeam() {
   const { teamId } = useParams();
@@ -39,7 +39,7 @@ function EditTeam() {
     if (team) {
       try {
         await updateTeam(team.id, { name: teamName });
-        setIsEditingName(false); // Exit edit mode after saving
+        setIsEditingName(false);
         setTeamName(teamName);
       } catch (error) {
         console.error('Error updating team name:', error);

@@ -1,0 +1,5 @@
+.pokemon-card.expanded {
+    width: 60%;
+    margin-left: 2rem;
+    max-height: 350px;
+}

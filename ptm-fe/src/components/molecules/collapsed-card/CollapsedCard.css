@@ -1,0 +1,11 @@
+.pokemon-card.collapsed {
+    max-height: 100px;
+    overflow: hidden;
+}
+
+.pokemon-card.collapsed-selected {
+    max-height: 100px;
+    overflow: hidden;
+    border-width: 2;
+    border-color:#007bff;
+}

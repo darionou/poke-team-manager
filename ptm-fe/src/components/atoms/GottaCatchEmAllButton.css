@@ -1,0 +1,15 @@
+.gceab-pokemon-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 1rem;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .gceab-pokemon-button:hover {
+    background-color: #0056b3;
+  }
