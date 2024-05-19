@@ -66,9 +66,6 @@ function CreateTeam() {
             <h3>
               Ready to get your Pokémon? Press on the button below to catch one.
             </h3>
-            {/* <button className="add-pokemon-button" onClick={handleAddPokemon}>
-              Gotta Catch 'Em All
-            </button> */}
             <GottaCatchEmAllButton onClick={handleAddPokemon} text={'Gotta Catch \'Em All'} />
             <div className="create-pokemon-layout">
               <div className="pokemon-list">
